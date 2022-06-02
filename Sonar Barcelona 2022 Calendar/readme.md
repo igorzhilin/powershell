@@ -1,4 +1,4 @@
-# Sonar 2022 program in Google Calendar format
+# Sonar 2022 program in Google Calendar / Outlook format
 [Sonar](https://sonar.es/) is one of the world's largest electronic music festivals. It is held in Barcelona, Spain every summer. Over 3 days and 3 nights, there are [150+ performances of artists, DJs and speakers](https://sonar.es/en/2022/artists) spread over [several locations and stages](https://sonar.es/en/2022/showcases).
 
 Sonar 2022 takes place on June 16-18 2022.
