@@ -37,3 +37,4 @@ No, but it is still good enough.
 ## What else can be done
 * Schedule information actually can be taken straight from the Sonar timetable page. I did not go for that because the data structure in that page is `Date | Day/Night -> Venue -> List of events`, and I would have to figure out how to attribute child elements to the parent. Whereas in individual artist pages complete event information is available.
 * Separate calendars can be created per Venue, Day/Night, etc. I actually initially created a calendar out of our own carefully curated selection of events. In any case, after the event information is collected in a powershell object, it can be sliced any way possible.
+* Times can be added with time zone information. I do not do that because I am in the same time zone.
