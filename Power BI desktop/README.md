@@ -46,8 +46,10 @@ When a pbix file is opened in PBI desktop, the `PBIDesktop.exe` spawns an Analys
 ### First detect local PBI SSAS Tabular instance and get the DB object
 This is the SSAS Tabular DB behind the openen PBI desktop file.
 
-```
-$pbixFilePathRegex = '.*' # if you have a single pbix open, this will work
+```PowerShell
+# if you have a single pbix open, this will work
+# otherwise specify here the name of opened pbix file
+$pbixFilePathRegex = '.*' 
 
 # Get local PBI desktop instance
 $localPBIDesktopInstance = Get-LocalPBIDesktopInstances -pbixFilePathRegex $pbixFilePathRegex
@@ -63,7 +65,7 @@ Then you use this `$db` object to make mass changes.
 
 ### Mass hide Power BI desktop columns
 If column name begins with _ or $, hide them in all tables.
-```
+```PowerShell
 # look for tables with this name pattern - keep .* for all tables
 $tableNameRegex = '.*'
 
@@ -80,7 +82,7 @@ Set-SSASColumnProperties -db $db -tableNameRegex $tableNameRegex -columnNameRege
 
 ### Mass rename Power BI desktop columns
 Replace "(DesC)" with "(desc.)" in column names of all tables.
-```
+```PowerShell
 # look for tables with this name pattern - keep .* for all tables
 $tableNameRegex = '.*'
 
@@ -96,7 +98,7 @@ Set-SSASColumnNamesFindReplace -db $db -tableNameRegex $tableNameRegex -findRepl
 
 ### Mass change format string of Power BI desktop measures
 Look up measures in table with "kpi" in name that have "%" in measure name and set their formatting to percentage.
-```
+```PowerShell
 # look for tables with this name pattern - keep .* for all tables
 $tableNameRegex = '.*kpi.*'
 # look for measures with this name pattern
@@ -112,7 +114,7 @@ Set-SSASMeasureProperties -db $db -tableNameRegex $tableNameRegex -measureNameRe
 
 ### Mass rename Power BI desktop measures
 Look up measures in table with "3wm" in name. Replace "rep." with "reporting" and "No match performed %" with "Revenue (rep) not matched %".
-```
+```PowerShell
 # look for tables with this name pattern - keep .* for all tables
 $tableNameRegex = '.*3wm.*'
 
@@ -129,7 +131,7 @@ Set-SSASMeasureNamesFindReplace -db $db -tableNameRegex $tableNameRegex -findRep
 ```
 
 ### Mass create Power BI desktop measures from definitions
-```
+```PowerShell
 # measures will be created in this table
 $tableName = '_Measures - KPIs'
 
@@ -171,7 +173,7 @@ New-SSASMeasures -db $db -tableName $tableName -measureDefinitionList $measureDe
 
 ### Mass hide Power BI desktop tables
 Hide tables with names starting with "_helper", "_key" or "Row-level"
-```
+```PowerShell
 $tableNameRegex = '^_helper|^_key|^Row-level'
 $tableProperties = @{
     IsHidden = $true
@@ -181,7 +183,8 @@ Set-SSASTableProperties -db $db -tableNameRegex $tableNameRegex -tableProperties
 ```
 
 ### Mass create Power BI desktop calculated tables from definitions
-```
+Create a hidden table with a DAX function.
+```PowerShell
 $tableDefinitionList = @(
     @{
         Name = '_key_AnalysisId_KOKRS_PRCTR'
@@ -193,16 +196,16 @@ $tableDefinitionList = @(
 New-SSASTables -db $db -tableDefinitionList $tableDefinitionList
 ```
 
-### Mass remove Power BI desktop tables
-‼ warning: this can seriously damage your data model
-```
+### Mass remove Power BI desktop tables - ‼ warning: this can seriously damage your data model
+Remove tables with names starting with "Calendar"
+```PowerShell
 $tableNameRegex = '^Calendar'
 Remove-SSASTables -db $db -tableNameRegex $tableNameRegex
 ```
 
 ### Mass create Power BI desktop relationships from definitions
-
-```
+You can create many relationships.
+```PowerShell
 <#
     IMPORTANT: 
         "from" IS MANY 
@@ -235,3 +238,6 @@ $relationshipDefinitionList = @(
 
 New-SSASRelationships -db $db -relationshipDefinitionList $relationshipDefinitionList
 ```
+
+### Export Power BI desktop model metadata (tables, columns, load script, relationships, measures) to an excel file
+See [this file](Example%20-%20powerbi%20desktop%20connect%20to%20local%20-%20extract%20model%20json%20and%20metadata.ps1).
