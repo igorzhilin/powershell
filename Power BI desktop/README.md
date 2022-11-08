@@ -36,8 +36,9 @@ When a pbix file is opened in PBI desktop, the `PBIDesktop.exe` spawns an Analys
 - ImportExcel
 - JoinModule
 
-## What may need further polishing
-1. When a measure is renamed, the script then cascades the change to other measures referencing the old name of the measure and does a find-replace in their DAX formulas. This usually works. But I have not tested this thoroughly. 
+## What needs further polishing
+1. When a measure is renamed, the script then cascades the change to other measures referencing the old name of the measure and does a find-replace in their DAX formulas. This usually works. But I have not tested this thoroughly.
+3. Currently renamed columns are not cascaded to measures. This means, column is renamed, measure cannot find it and breaks. Cascading column name changes is in the plans.
 2. Currently any change done on the PBI desktop data model is saved in the data model immediately (each function calls `$db.Model.SaveChanges()` at the end). Further time savings may be gained if `$db.Model.SaveChanges()` is called after all required changes have been made. 
 3. For the same reason, und of changes is not implemented - however, in theory the SSAS object model provides method [`Model.UndoLocalChanges`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.analysisservices.tabular.model.undolocalchanges?view=analysisservices-dotnet).
 
