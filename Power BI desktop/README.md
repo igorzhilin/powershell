@@ -127,7 +127,7 @@ $tableNameRegex = '.*3wm.*'
 # refer to psPbiDesktop.ps1 for the structure of this param
 
 $findReplaceRegexList = @(
-    @{Find = 'rep\.'; Replace = 'reporting'}
+    @{Find = 'rep\.'; Replace = 'reporting'},
     @{Find = 'No match performed %'; Replace = 'Revenue (rep) not matched %'}
 )
 
