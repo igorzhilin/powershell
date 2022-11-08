@@ -1,6 +1,6 @@
 Manage Power BI service (the cloud thing at http://app.powerbi.com) using PowerShell.
 
-All activities except authentication are performed via PBI REST API. Authentication is done by MicrosoftPowerBIMgmt PS Module.
+All activities except authentication are performed via [PBI REST API](https://learn.microsoft.com/en-us/rest/api/power-bi/). Authentication is done by MicrosoftPowerBIMgmt PS Module.
 
 As a start, we collect some statistics:
 - Workspaces
