@@ -47,6 +47,9 @@ When a pbix file is opened in PBI desktop, the `PBIDesktop.exe` spawns an Analys
 This is the SSAS Tabular DB behind the openen PBI desktop file.
 
 ```PowerShell
+# The functions are here
+. "$PSScriptRoot\psPbiDesktop.ps1"
+
 # if you have a single pbix open, this will work
 # otherwise specify here the name of opened pbix file
 $pbixFilePathRegex = '.*' 
