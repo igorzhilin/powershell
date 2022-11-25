@@ -25,11 +25,11 @@ I needed to perform the following operations, and I managed to script them:
 - Re-create PBI desktop model objects from model metadata
 
 ## How this works
-When a pbix file is opened in PBI desktop, the `PBIDesktop.exe` spawns an Analysis Services Tabular process `msmdsrv.exe`, and you can connect to this SSAS Tabular model and change it using powershell `sqlserver` module. After the script makes the changes in the model and saves them, the desktop automatically picks them up.
+When a pbix file is opened in PBI desktop, the `PBIDesktop.exe` spawns an Analysis Services Tabular process `msmdsrv.exe`, and you can connect to this SSAS Tabular model and change it using .NET namespace `Microsoft.AnalysisServices.Tabular` (coming from PS `sqlserver` module). After the script makes the changes in the model and saves them, the desktop automatically picks them up.
 
 ## Files that you need
-- `psPbiDesktop.ps1` contains the functions to connect to local SSAS Tabular instance created by PBI desktop
-- `psHelpers.ps1` contains a bit of PS boilerplate
+- [`psPbiDesktop.ps1`](./psPbiDesktop.ps1) contains the functions to connect to local SSAS Tabular instance created by PBI desktop
+- [`psHelpers.ps1`](../psHelpers/psHelpers.ps1) contains a bit of PS boilerplate
 
 ## Dependencies on PS modules
 - sqlserver
