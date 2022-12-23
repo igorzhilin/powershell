@@ -7,7 +7,6 @@
 #>
 
 cls
-$apkDir = 'c:\Temp\apk\__\' # install apks from here
 
 # set adb location - it should be the dir where adb.exe is located
 $adbRoot = "$($env:UserProfile)\totalcmd\programs\adb"
