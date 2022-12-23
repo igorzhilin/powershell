@@ -1,13 +1,13 @@
 # adb helpers
 ## What is adb?
-adb (Android debug bridge) is a tool to manage Android devices from a PC using a command line.
+adb (Android debug bridge) is a tool to manage Android devices from a PC using a command line. Hence, from PowerShell, too! 👍
 
-adb is part of so-called Android SDK Platform-Tools package - [download it from here](https://developer.android.com/studio/releases/platform-tools).
+`adb.exe` is part of so-called Android SDK Platform-Tools package - [download it from here](https://developer.android.com/studio/releases/platform-tools).
 
 ## What can you do with adb?
 Plenty of things, but for me mainly it is an easy way to use PC command line to:
-* [mass install apks (Android applications) from PC](adb%20install%20apks%20batch.ps1)
-* uninstall apps (e.g. preinstalled vendor bloatware, e.g. from Samsung, Lenovo, Huawei, Facebook, etc.)
+* [mass install apks (Android applications) from PC](adb%20mass%20install%20apks.ps1)
+* [mass uninstall apps from the Android device](adb%20mass%20uninstall.ps1) (e.g. preinstalled vendor bloatware, e.g. from Samsung, Lenovo, Huawei, Facebook, etc.)
 * [mass copy ("push") files and directories to Android device](adb%20mass%20push.ps1)
 
 ## How to set up your Android device to support adb?
