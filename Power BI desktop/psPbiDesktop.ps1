@@ -82,7 +82,7 @@ msmdsrv.exe
             LocalPort -Unique
     
     # add process data to connections
-    $connectionsWithProcessDetails = Join-Object -LeftObject $connections -RightObject $processesWithDetails -OnExpression {$Left.OwningProcess -eq $Right.ProcessId}
+    $connectionsWithProcessDetails = Join-Object -LeftObject $connections -RightObject $processesWithDetails -on OwningProcess -Equals ProcessId
 
     # if file path pattern supplied, get the matching process
     If($pbixFilePathRegex) {

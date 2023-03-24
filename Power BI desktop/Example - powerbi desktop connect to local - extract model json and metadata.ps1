@@ -20,11 +20,11 @@
         psHelpers.ps1
         psPbiDesktop.ps1
 #>
-cls
+Clear-Host
 
 
 . "$PSScriptRoot\psPbiDesktop.ps1"
-. "$PSScriptRoot\psHelpers.ps1"
+. "$PSScriptRoot\..\psHelpers\psHelpers.ps1"
 
 <#
                                                             _                
@@ -38,7 +38,7 @@ cls
 #>
 
 # You can get the pbi process with file name fulfilling the criteria
-$pbixFilePathRegex = '.*o2c.*'
+$pbixFilePathRegex = '.*'
 
 Write-Host "Looking for PBI desktop that has the file with this path pattern: " -ForegroundColor Gray -NoNewline
 Write-Host "$pbixFilePathRegex" -ForegroundColor Yellow 
