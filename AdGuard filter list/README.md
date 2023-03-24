@@ -13,7 +13,9 @@ The `.hosts` files are sourced from here: [https://codeberg.org/Cyanic76/Hosts](
 ## Add the generated filter list to AdGuard
 * Settings ➡ Content blocking ➡ Filters ➡ Custom filters ➡ ➕ NEW CUSTOM FILTER ➡ Add the URL ➡ IMPORT
 
-## Example output
-Filter list: [http://sprunge.us/bZNyaw](http://sprunge.us/bZNyaw)
+## Example outputs
+* Huawei filter list for AdGuard: [http://sprunge.us/bZNyaw](http://sprunge.us/bZNyaw)
+* Complete filter list for AdGuard based on full **[Cyanic's Hosts list](https://hosts.cyanic.me/cyanicHosts.txt)** (contains `localhost` and `0.0.0.0` for some reason, but otherwise looks ok): [http://sprunge.us/7iPkRg](http://sprunge.us/7iPkRg)
 
+## Screenshot
 ![](https://i.imgur.com/YbZHK4r.png)
