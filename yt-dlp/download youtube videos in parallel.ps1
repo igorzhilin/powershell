@@ -12,7 +12,7 @@
         E.g. these parameters: 
             -P home:$using:ytdlpHomePath -o "%(webpage_url_domain)s/%(uploader)s/$using:playlistTitle/$indexText - %(title)s.%(ext)s"
         will yield final path for file:
-            'ytdlpHomePath/youtube.com/uploader/playlist name/001 - video name.(mp4,mkv,etc...)'
+            'ytdlpHomePath/youtube.com/uploader of the playlist/playlist name/001 - video name.(mp4,mkv,etc...)'
 
     Dependencies:
     - yt-dlp itself. Get it here: https://github.com/yt-dlp/yt-dlp/
@@ -41,7 +41,7 @@ $nrParallelDownloads = 16
 $whereToSaveRootDir = 'C:\temp\yt-dlp downloads\'
 
 # download this playlist - provide youtube URL
-$youtubePlaylistUrl = 'https://www.youtube.com/playlist?list=PLiO4Yp-nfJ1vL4m3OuIO7EqohE3IjxmO9'
+$youtubePlaylistUrl = 'https://www.youtube.com/playlist?list=PL8V6hug9_CkyLeZRMPekVxJDFmmJ4f3vL'
 
 <#
                           _       
@@ -76,6 +76,7 @@ Write-Host "Playlist items"
 $youtubePlaylistJson.entries | Select-Object title, url | Out-String  | Write-Host -ForegroundColor Magenta
 
 $playlistTitle = $youtubePlaylistJson.title
+$playlistUploader = $youtubePlaylistJson.uploader
 
 # test if the $whereToSaveRootDir exists - if not, create it
 If(-not (Test-Path $whereToSaveRootDir)) {
@@ -110,5 +111,5 @@ $downloadInParallelList | ForEach-Object -ThrottleLimit $nrParallelDownloads -Pa
     #yt-dlp --write-info-json --skip-download --no-write-thumbnail -o "%(webpage_url_domain)s/%(uploader)s/$using:playlistTitle/$indexText - %(title)s.%(ext)s" $url
 
     # the structure of the path of final file is specified here. There are also additional yt-dlp command-line parameters. See details in: https://github.com/yt-dlp/yt-dlp#output-template-examples
-    yt-dlp --no-write-thumbnail -f "bv*[height<=1080]+ba/ba" --concurrent-fragments 4 --no-progress --output-na-placeholder "" -P home:$using:ytdlpHomePath -o "%(webpage_url_domain)s/%(uploader)s/$using:playlistTitle/$indexText - %(title)s.%(ext)s" $url
+    yt-dlp --no-write-thumbnail -f "bv*[height<=1080]+ba/ba" --concurrent-fragments 4 --no-progress --output-na-placeholder "" -P home:$using:ytdlpHomePath -o "%(webpage_url_domain)s/$using:playlistUploader/$using:playlistTitle/$indexText - %(title)s.%(ext)s" $url
 }
