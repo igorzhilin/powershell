@@ -1,15 +1,22 @@
 <#
-    This script relies on yt-dlp to download youtube playlist entries in parallel
+    This script downloads videos from youtube playlist in parallel using yt-dlp.
+    yt-dlp is a command-line media downloader supporting many platforms (such as youtube).
+
+    https://github.com/yt-dlp/yt-dlp/
+
+    yt-dlp itself does not support downloading whole videos in parallel (only fragments of video files). Hence this script.
+
+    The order of files will be the same as in the original playlist.
 
     The structure of target file path is specified in the parameters -P and -o of final yt-dlp command line. 
     E.g. these parameters: 
         -P home:$using:ytdlpHomePath -o "%(webpage_url_domain)s/%(uploader)s/$using:playlistTitle/$indexText - %(title)s.%(ext)s"
     yields final path for file:
-        'ytdlpHomePath/youtube.com/uploader/playlist name/001 - video name.mkv'
+        'ytdlpHomePath/youtube.com/uploader/playlist name/001 - video name.(mp4,mkv,etc...)'
 
     Dependencies:
         yt-dlp must be available on the system - get it from here https://github.com/yt-dlp/yt-dlp/
-        ffmpeg (not required in this case) - if you use further yt-dlp functions such as file splitting or conversion 
+        ffmpeg - required if you use further yt-dlp functions such as file splitting, conversion, or sponsorblock removal
 #>
 
 <#
@@ -33,7 +40,7 @@ $nrParallelDownloads = 16
 # if not exists - will be created
 $whereToSaveRootDir = 'C:\temp\yt-dlp downloads\'
 
-# download this playlist
+# download this playlist - provide youtube URL
 $youtubePlaylistUrl = 'https://www.youtube.com/playlist?list=PLiO4Yp-nfJ1vL4m3OuIO7EqohE3IjxmO9'
 
 <#
