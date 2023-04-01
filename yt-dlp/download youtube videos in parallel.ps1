@@ -1,22 +1,22 @@
 <#
     This script downloads videos from youtube playlist in parallel using yt-dlp.
     yt-dlp is a command-line media downloader supporting many platforms (such as youtube).
-
     https://github.com/yt-dlp/yt-dlp/
 
-    yt-dlp itself does not support downloading whole videos in parallel (only fragments of video files). Hence this script.
+    Why this script:
+        yt-dlp itself does not support downloading whole videos in parallel (it can only parallelize the download of fragments of video files).
 
-    The order of files will be the same as in the original playlist.
-
-    The structure of target file path is specified in the parameters -P and -o of final yt-dlp command line. 
-    E.g. these parameters: 
-        -P home:$using:ytdlpHomePath -o "%(webpage_url_domain)s/%(uploader)s/$using:playlistTitle/$indexText - %(title)s.%(ext)s"
-    yields final path for file:
-        'ytdlpHomePath/youtube.com/uploader/playlist name/001 - video name.(mp4,mkv,etc...)'
+    Notes:
+    - The order of files will be the same as in the original playlist.
+    - The structure of target file path is specified in the parameters -P and -o of the final yt-dlp command line. 
+        E.g. these parameters: 
+            -P home:$using:ytdlpHomePath -o "%(webpage_url_domain)s/%(uploader)s/$using:playlistTitle/$indexText - %(title)s.%(ext)s"
+        will yield final path for file:
+            'ytdlpHomePath/youtube.com/uploader/playlist name/001 - video name.(mp4,mkv,etc...)'
 
     Dependencies:
-        yt-dlp must be available on the system - get it from here https://github.com/yt-dlp/yt-dlp/
-        ffmpeg - required if you use further yt-dlp functions such as file splitting, conversion, or sponsorblock removal
+    - yt-dlp itself. Get it here: https://github.com/yt-dlp/yt-dlp/
+    - ffmpeg - required if you use further yt-dlp functions such as file splitting, conversion, or sponsorblock removal. Get it here: https://ffmpeg.org/
 #>
 
 <#
@@ -30,13 +30,13 @@
                               |_|
 #>
 
-# yt-dlp.exe must exist in this dir
+# yt-dlp.exe must exist in this dir. This will be specific to your system.
 $ytdlpRoot = "$($env:UserProfile)\totalcmd\programs\yt-dlp\"
 
-# how many downloads to run in parallel - warning, too many may make youtube unhappy
+# how many downloads to run in parallel - warning, too many will make youtube unhappy
 $nrParallelDownloads = 16
 
-# the root dir where yt-dlp will create its subdirs based on its -o parameter
+# the root dir where yt-dlp will create its subdirs based on the -o parameter
 # if not exists - will be created
 $whereToSaveRootDir = 'C:\temp\yt-dlp downloads\'
 
